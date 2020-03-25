@@ -1,0 +1,28 @@
+{
+  "name": "omnipay/paydollar",
+  "type": "library",
+  "description": "Paydollar driver for omnipay",
+  "keywords": [
+    "gateway",
+    "paydollar gateway service",
+    "merchant",
+    "paydollar",
+    "omnipay",
+    "pay",
+    "payment"
+  ],
+  "authors": [
+    {
+    "name": "sahin"
+  }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Omnipay\\Paydollar\\": "src/"
+    }
+  },
+  "require": {
+    "league/omnipay": "^3",
+    "vlucas/phpdotenv": "^4.1"
+  }
+}
