@@ -34,12 +34,11 @@ $parameters = $adapter->getParameters();
 
 $completePurchase = $adapter->completePurchase()->sendData([
     $parameters,
-    'secureHash'    => '12321312',
-    'security'      => '12321321312',
     'verify_success'    => true
 ]);
 
 if($completePurchase->isSuccessful()) {
+    echo "success";
     dd($completePurchase);
 }
 
