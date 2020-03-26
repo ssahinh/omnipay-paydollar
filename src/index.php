@@ -1,6 +1,7 @@
 <?php
 
 use Omnipay\Paydollar\ClientGateway;
+use Omnipay\Paydollar\Message\ClientCompletePurchaseRequest;
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/ClientGateway.php';
@@ -31,6 +32,22 @@ $response = $adapter->purchase([
 
 $parameters = $adapter->getParameters();
 
-if($response->isRedirect()) {
-    var_dump($response->getRedirectHtml());
+$completePurchase = $adapter->completePurchase()->sendData([
+    $parameters,
+    'secureHash'    => '12321312',
+    'security'      => '12321321312',
+    'verify_success'    => true
+]);
+
+if($completePurchase->isSuccessful()) {
+    dd($completePurchase);
+}
+
+
+function dd()
+{
+    array_map(function($x) {
+        var_dump($x);
+    }, func_get_args());
+    die;
 }
