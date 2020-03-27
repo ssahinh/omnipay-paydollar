@@ -24,6 +24,8 @@ $notification = $adapter->acceptNotification([
 
 ])->send();
 
+dd($notification->isSuccessful());
+
 /** @var \Omnipay\Common\Message\AbstractResponse $response */
 $response = $adapter->purchase([
     'amount'        => 100,

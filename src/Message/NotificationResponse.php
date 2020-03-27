@@ -4,6 +4,7 @@ namespace Omnipay\Paydollar\Message;
 
 use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\NotificationInterface;
+use Omnipay\Paydollar\Helper;
 
 class NotificationResponse extends AbstractResponse implements NotificationInterface
 {
@@ -15,7 +16,7 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function getTransactionStatus()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -28,12 +29,16 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
         /**
          * Validate Hash
          */
+
+        /* Security'i nerden alacağımı bilemedim */
+        Helper::getParamsSignatureWithSecurity($this->data, 'security');
+
         return false;
     }
 
     public function getTransactionReference()
     {
-
+        return $this->data;
     }
 
 
