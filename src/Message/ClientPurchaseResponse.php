@@ -15,7 +15,7 @@ class ClientPurchaseResponse extends AbstractResponse implements RedirectRespons
 
     public function isSuccessful()
     {
-        return true;
+        return false;
     }
 
 
@@ -27,7 +27,7 @@ class ClientPurchaseResponse extends AbstractResponse implements RedirectRespons
 
     public function getRedirectUrl()
     {
-        return $this->getRequest()->getPayServerUrl();
+        return 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp';
     }
 
 
@@ -39,33 +39,9 @@ class ClientPurchaseResponse extends AbstractResponse implements RedirectRespons
 
     public function getRedirectData()
     {
+        // TODO: Add Hash
         return $this->data;
     }
-
-
-    public function getRedirectHtml()
-    {
-        $action = $this->getRequest()->getPayServerUrl();
-        $fields = $this->getFormFields();
-        $method = $this->getRedirectMethod();
-
-        $html = <<<eot
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Paydollar</title>
-</head>
-<body  onload="javascript:document.pay_form.submit();">
-    <form id="pay_form" name="pay_form" action="{$action}" method="{$method}">
-        {$fields}
-    </form>
-</body>
-</html>
-eot;
-
-        return $html;
-    }
-
 
     public function getFormFields()
     {

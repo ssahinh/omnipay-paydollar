@@ -20,28 +20,66 @@ $adapter->initialize([
     'testMode'      => true,
 ]);
 
-/** @var \Omnipay\Common\Message\ResponseInterface $response */
+$notification = $adapter->acceptNotification([
+
+])->send();
+
+/** @var \Omnipay\Common\Message\AbstractResponse $response */
 $response = $adapter->purchase([
     'amount'        => 100,
     'successUrl'    => getenv('SUCCESS_URL'),
     'failUrl'       => getenv('FAIL_URL'),
     'returnUrl'     => getenv('RETURN_URL'),
     'cancelUrl'     => getenv('CANCEL_URL'),
-    'redirectUrl'   => getenv('REDIRECT_URL'),
 ])->send();
 
-$parameters = $adapter->getParameters();
+if ($response->isSuccessful()) {
 
-$completePurchase = $adapter->completePurchase()->sendData([
-    $parameters,
-    'verify_success'    => true
-]);
+}
+else if ($response->isRedirect()) {
+    /** \Omnipay\Common\Message\RedirectResponseInterface $response */
+    dd($response->getRedirectResponse()->getContent());
+} else {
 
-if($completePurchase->isSuccessful()) {
-    echo "success";
-    dd($completePurchase);
 }
 
+//dd(
+//  $response->isRedirect(),
+//    $response->getRedirectUrl(),
+//    $response->getRedirectMethod(),
+//    $response->getRedirectData(),
+//    $response->getRedirectResponse()
+//);
+//
+//
+
+
+
+function getRedirectHtml()
+{
+    $action = $this->getRequest()->getPayServerUrl();
+    $fields = $this->getFormFields();
+    $method = $this->getRedirectMethod();
+
+    $html = <<<eot
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Paydollar</title>
+</head>
+<body  onload="javascript:document.pay_form.submit();">
+    <form id="pay_form" name="pay_form" action="{$action}" method="{$method}">
+        {$fields}
+    </form>
+</body>
+</html>
+eot;
+
+    return $html;
+}
+
+
+$parameters = $adapter->getParameters();
 
 function dd()
 {

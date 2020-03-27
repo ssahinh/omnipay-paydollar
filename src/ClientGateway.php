@@ -37,7 +37,7 @@ class ClientGateway extends AbstractGateway
             'payType'    => 'N',
             'lang'       => 'C',
             'payMethod'  => 'ALL',
-            'redirect'   => 'https://sim4crew.test'
+            'redirect'   => 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp'
         );
     }
 
@@ -278,6 +278,11 @@ class ClientGateway extends AbstractGateway
     public function refund(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\Paydollar\Message\ClientRefundRequest', $parameters);
+    }
+
+    public function acceptNotification(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\Paydollar\Message\NotificationRequest', $parameters);
     }
 
     public function __call($name, $arguments)

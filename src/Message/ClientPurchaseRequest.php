@@ -33,8 +33,7 @@ class ClientPurchaseRequest extends AbstractClientRequest
             'cancelUrl'      => $this->getCancelUrl(),
             'payType'        => $this->getPayType(),
             'lang'           => $this->getLang(),
-            'payMethod'      => $this->getPayMethod(),
-            'redirect'       => $this->getRedirect(),
+            'payMethod'      => $this->getPayMethod()
         );
 
         $data = Helper::filterData($data);
@@ -61,7 +60,6 @@ class ClientPurchaseRequest extends AbstractClientRequest
             'payType',
             'lang',
             'payMethod',
-            'redirect'
         );
     }
 
