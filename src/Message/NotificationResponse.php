@@ -26,24 +26,27 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function isSuccessful()
     {
-        /**
-         * Validate Hash
-         */
-
-        /* Security'i nerden alacağımı bilemedim */
-        Helper::getParamsSignatureWithSecurity($this->data, 'security');
-
+        // Hash kontrolü
+        // Hash boş ve yanlışsa false, diğer türlü true
         return false;
     }
 
     public function getTransactionReference()
     {
-        return $this->data;
+        //
+        return $this->getData();
     }
 
 
     public function getData()
     {
         return $this->data;
+    }
+
+    public function getTransactionId()
+    {
+        return $this->getData()['ref'];
+
+        return $this->getData();
     }
 }

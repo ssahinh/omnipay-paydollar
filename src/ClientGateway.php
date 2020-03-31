@@ -74,16 +74,6 @@ class ClientGateway extends AbstractGateway
         return $this->getParameter('actionType');
     }
 
-    public function setPayRef($value)
-    {
-        return $this->setParameter('payRef', $value);
-    }
-
-
-    public function getPayRef()
-    {
-        return $this->getParameter('payRef');
-    }
 
     public function setMerchantUrl($value)
     {
@@ -105,30 +95,6 @@ class ClientGateway extends AbstractGateway
     public function getPayServerUrl()
     {
         return $this->getParameter('pay_server_url');
-    }
-
-
-    public function setAmount($value)
-    {
-        return $this->setParameter('amount', $value);
-    }
-
-
-    public function getAmount()
-    {
-        return $this->getParameter('amount');
-    }
-
-
-    public function setOrderRef($value)
-    {
-        return $this->setParameter('orderRef', $value);
-    }
-
-
-    public function getOrderRef()
-    {
-        return $this->getParameter('orderRef');
     }
 
 

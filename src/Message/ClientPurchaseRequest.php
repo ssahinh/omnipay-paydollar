@@ -37,7 +37,6 @@ class ClientPurchaseRequest extends AbstractClientRequest
         );
 
         $data = Helper::filterData($data);
-
         if ($this->getSecurity()) {
             $data['secureHash'] = Helper::getParamsSignatureWithSecurity($data, $this->getSecurity());
         }
@@ -59,7 +58,7 @@ class ClientPurchaseRequest extends AbstractClientRequest
             'cancelUrl',
             'payType',
             'lang',
-            'payMethod',
+            'payMethod'
         );
     }
 
@@ -75,4 +74,40 @@ class ClientPurchaseRequest extends AbstractClientRequest
     {
         return $this->response = new ClientPurchaseResponse($this, $data);
     }
+
+    public function setPayRef($value)
+    {
+        return $this->setParameter('payRef', $value);
+    }
+
+
+    public function getPayRef()
+    {
+        return $this->getParameter('payRef');
+    }
+
+
+    public function setAmount($value)
+    {
+        return $this->setParameter('amount', $value);
+    }
+
+
+    public function getAmount()
+    {
+        return $this->getParameter('amount');
+    }
+
+
+    public function setOrderRef($value)
+    {
+        return $this->setParameter('orderRef', $value);
+    }
+
+
+    public function getOrderRef()
+    {
+        return $this->getParameter('orderRef');
+    }
+
 }

@@ -1,7 +1,6 @@
 <?php
 
 use Omnipay\Paydollar\ClientGateway;
-use Omnipay\Paydollar\Message\ClientCompletePurchaseRequest;
 
 require __DIR__.'/../vendor/autoload.php';
 require __DIR__.'/ClientGateway.php';
@@ -11,9 +10,8 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 $adapter = new ClientGateway();
-$adapter->initialize([
+    $adapter->initialize([
     'merchantId'    => getenv('MERCHANT_ID'),
-    'orderRef'      => date('YmdHis'),
     'username'      => getenv('USERNAME'),
     'password'      => getenv('PASSWORD'),
     'signature'     => getenv('SIGNATURE'),
@@ -24,8 +22,6 @@ $notification = $adapter->acceptNotification([
 
 ])->send();
 
-dd($notification->isSuccessful());
-
 /** @var \Omnipay\Common\Message\AbstractResponse $response */
 $response = $adapter->purchase([
     'amount'        => 100,
@@ -33,6 +29,7 @@ $response = $adapter->purchase([
     'failUrl'       => getenv('FAIL_URL'),
     'returnUrl'     => getenv('RETURN_URL'),
     'cancelUrl'     => getenv('CANCEL_URL'),
+    'orderRef'      => date('YmdHis'),
 ])->send();
 
 if ($response->isSuccessful()) {
