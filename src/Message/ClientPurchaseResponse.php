@@ -27,7 +27,7 @@ class ClientPurchaseResponse extends AbstractResponse implements RedirectRespons
 
     public function getRedirectUrl()
     {
-        return 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp';
+        return 'https://www.paydollar.com/b2c2/eng/payment/payForm.jsp';
     }
 
 
@@ -41,15 +41,5 @@ class ClientPurchaseResponse extends AbstractResponse implements RedirectRespons
     {
         // TODO: Add Hash
         return $this->data;
-    }
-
-    public function getFormFields()
-    {
-        $html = '';
-        foreach ($this->data as $key => $value) {
-            $html .= "<input type='hidden' name='{$key}' value='{$value}'/>\n";
-        }
-
-        return $html;
     }
 }

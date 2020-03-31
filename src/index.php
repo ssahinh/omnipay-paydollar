@@ -18,18 +18,15 @@ $adapter = new ClientGateway();
     'testMode'      => true,
 ]);
 
-$notification = $adapter->acceptNotification([
-
-])->send();
-
 /** @var \Omnipay\Common\Message\AbstractResponse $response */
 $response = $adapter->purchase([
-    'amount'        => 100,
+    'amount'        => 0.01,
     'successUrl'    => getenv('SUCCESS_URL'),
     'failUrl'       => getenv('FAIL_URL'),
     'returnUrl'     => getenv('RETURN_URL'),
     'cancelUrl'     => getenv('CANCEL_URL'),
     'orderRef'      => date('YmdHis'),
+    'payMethod'     => 'CC'
 ])->send();
 
 if ($response->isSuccessful()) {
@@ -37,22 +34,10 @@ if ($response->isSuccessful()) {
 }
 else if ($response->isRedirect()) {
     /** \Omnipay\Common\Message\RedirectResponseInterface $response */
-    dd($response->getRedirectResponse()->getContent());
+    echo $response->getRedirectResponse()->getContent();
 } else {
 
 }
-
-//dd(
-//  $response->isRedirect(),
-//    $response->getRedirectUrl(),
-//    $response->getRedirectMethod(),
-//    $response->getRedirectData(),
-//    $response->getRedirectResponse()
-//);
-//
-//
-
-
 
 function getRedirectHtml()
 {

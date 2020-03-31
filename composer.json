@@ -22,7 +22,10 @@
     }
   },
   "require": {
-    "league/omnipay": "^3",
-    "vlucas/phpdotenv": "^4.1"
+    "omnipay/common": "master"
+  },
+  "require-dev": {
+    "vlucas/phpdotenv": "^4.1",
+    "league/omnipay": "^3"
   }
 }

@@ -8,6 +8,7 @@ require __DIR__.'/ClientGateway.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+
 $adapter = new ClientGateway();
 $adapter->initialize([
     'merchantId'    => getenv('MERCHANT_ID'),
@@ -19,6 +20,6 @@ $adapter->initialize([
 
 $notification = $adapter->acceptNotification($_POST)->send();
 
-if($notification->isSuccessful()) {
-    return 'OK';
-}
+$myfile = fopen("log.txt", "a") or die("Unable to open file!");
+fwrite($myfile, print_r($notification->getData(), true));
+fclose($myfile);

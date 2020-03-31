@@ -35,9 +35,9 @@ class ClientGateway extends AbstractGateway
             'currCode'   => '840',
             'mpsMode'    => 'NIL',
             'payType'    => 'N',
-            'lang'       => 'C',
+            'lang'       => 'E',
             'payMethod'  => 'ALL',
-            'redirect'   => 'https://test.paydollar.com/b2cDemo/eng/payment/payForm.jsp'
+            'redirect'   => 'https://www.paydollar.com/b2c2/eng/directPayment/payComp.jsp'
         );
     }
 
