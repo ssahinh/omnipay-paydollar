@@ -28,9 +28,8 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
     {
         if($this->getData()['succescode'] == 0) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public function getTransactionReference()
