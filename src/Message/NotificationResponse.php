@@ -26,14 +26,15 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
      */
     public function isSuccessful()
     {
-        // Hash kontrolü
-        // Hash boş ve yanlışsa false, diğer türlü true
-        return false;
+        if($this->getData()['succescode'] == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function getTransactionReference()
     {
-        //
         return $this->getData();
     }
 
@@ -46,7 +47,5 @@ class NotificationResponse extends AbstractResponse implements NotificationInter
     public function getTransactionId()
     {
         return $this->getData()['ref'];
-
-        return $this->getData();
     }
 }
