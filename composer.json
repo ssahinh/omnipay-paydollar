@@ -22,7 +22,7 @@
     }
   },
   "require": {
-    "omnipay/common": "master"
+    "omnipay/common": "^3"
   },
   "require-dev": {
     "vlucas/phpdotenv": "^4.1",
