@@ -1,5 +1,5 @@
 {
-  "name": "omnipay/paydollar",
+  "name": "sethsahin/omnipay-paydollar",
   "type": "library",
   "description": "Paydollar driver for omnipay",
   "keywords": [
